@@ -30,5 +30,18 @@ public class AddressBookSystem {
         // Display updated contacts
         System.out.println("Contacts in the address book after editing:");
         addressBook.displayContacts();
+
+        // Delete an existing contact
+        System.out.print("Enter the first name of the contact to delete: ");
+        String deleteFirstName = scanner.nextLine();
+
+        System.out.print("Enter the last name of the contact to delete: ");
+        String deleteLastName = scanner.nextLine();
+
+        addressBook.deleteContact(deleteFirstName, deleteLastName);
+
+        // Display updated contacts
+        System.out.println("Contacts in the address book after deleting:");
+        addressBook.displayContacts();
     }
 }
