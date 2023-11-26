@@ -20,8 +20,17 @@ public class AddressBook {
     public void displayContacts() {
         for (int i = 0; i < numContacts; i++) {
             Contact contact = contacts[i];
-            System.out.println(contact.getFirstName() + " " + contact.getLastName());
-            // Display other contact details
+            System.out.println("Contact #" + (i + 1) + ":");
+            System.out.println("First Name: " + contact.getFirstName());
+            System.out.println("Last Name: " + contact.getLastName());
+            System.out.println("Address: " + contact.getAddress());
+            System.out.println("City: " + contact.getCity());
+            System.out.println("State: " + contact.getState());
+            System.out.println("Zip: " + contact.getZip());
+            System.out.println("Phone Number: " + contact.getPhoneNumber());
+            System.out.println("Email: " + contact.getEmail());
+            System.out.println("------------------------");
+
         }
     }
 
@@ -31,6 +40,12 @@ public class AddressBook {
             if (contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName)) {
                 // Found the contact, now prompt for edits
                 Scanner scanner = new Scanner(System.in);
+
+                System.out.print("Enter new first name: ");
+                contact.setAddress(scanner.nextLine());
+
+                System.out.print("Enter new last name : ");
+                contact.setAddress(scanner.nextLine());
 
                 System.out.print("Enter new address: ");
                 contact.setAddress(scanner.nextLine());
@@ -73,4 +88,4 @@ public class AddressBook {
         System.out.println("Contact not found with the given name.");
     }
 }
-}
+
