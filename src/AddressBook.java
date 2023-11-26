@@ -56,4 +56,21 @@ public class AddressBook {
         }
         System.out.println("Contact not found with the given name.");
     }
+    public void deleteContact(String firstName, String lastName) {
+        for (int i = 0; i < numContacts; i++) {
+            if (contacts[i].getFirstName().equals(firstName) && contacts[i].getLastName().equals(lastName)) {
+                // Shift remaining elements after the deleted contact
+                for (int j = i; j < numContacts - 1; j++) {
+                    contacts[j] = contacts[j + 1];
+                }
+                contacts[numContacts - 1] = null; // Set the last element to null
+                numContacts--;
+
+                System.out.println("Contact deleted successfully.");
+                return;
+            }
+        }
+        System.out.println("Contact not found with the given name.");
+    }
+}
 }
