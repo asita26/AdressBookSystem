@@ -2,7 +2,7 @@ public class AddressBookSystem {
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program");
 
-        // Create an instance of AddressBookSystem and perform operations
+        // Create an instance of AddressBook and perform operations
         AddressBook addressBook = new AddressBook();
 
         // Example: Creating a new contact using console input
@@ -15,9 +15,20 @@ public class AddressBookSystem {
         System.out.print("Enter last name: ");
         newContact.setLastName(scanner.nextLine());
 
-
-
         addressBook.addContact(newContact);
+        addressBook.displayContacts();
+
+        // Edit an existing contact
+        System.out.print("Enter the first name of the contact to edit: ");
+        String editFirstName = scanner.nextLine();
+
+        System.out.print("Enter the last name of the contact to edit: ");
+        String editLastName = scanner.nextLine();
+
+        addressBook.editContact(editFirstName, editLastName);
+
+        // Display updated contacts
+        System.out.println("Contacts in the address book after editing:");
         addressBook.displayContacts();
     }
 }
