@@ -30,7 +30,6 @@ public class AddressBook {
             System.out.println("Phone Number: " + contact.getPhoneNumber());
             System.out.println("Email: " + contact.getEmail());
             System.out.println("------------------------");
-
         }
     }
 
@@ -42,10 +41,10 @@ public class AddressBook {
                 Scanner scanner = new Scanner(System.in);
 
                 System.out.print("Enter new first name: ");
-                contact.setAddress(scanner.nextLine());
+                contact.setFirstName(scanner.nextLine());
 
-                System.out.print("Enter new last name : ");
-                contact.setAddress(scanner.nextLine());
+                System.out.print("Enter new last name: ");
+                contact.setLastName(scanner.nextLine());
 
                 System.out.print("Enter new address: ");
                 contact.setAddress(scanner.nextLine());
@@ -71,6 +70,7 @@ public class AddressBook {
         }
         System.out.println("Contact not found with the given name.");
     }
+
     public void deleteContact(String firstName, String lastName) {
         for (int i = 0; i < numContacts; i++) {
             if (contacts[i].getFirstName().equals(firstName) && contacts[i].getLastName().equals(lastName)) {
