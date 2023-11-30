@@ -1,25 +1,20 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    private Contact[] contacts;
-    private int numContacts;
+    private ArrayList<Contact> contacts; // Use ArrayList to dynamically store contacts
 
     public AddressBook() {
-        this.contacts = new Contact[50];
-        this.numContacts = 0;
+        this.contacts = new ArrayList<>();
     }
 
     public void addContact(Contact contact) {
-        if (numContacts < contacts.length) {
-            contacts[numContacts++] = contact;
-        } else {
-            System.out.println("Address book is full. Cannot add more contacts.");
-        }
+        contacts.add(contact);
     }
 
     public void displayContacts() {
-        for (int i = 0; i < numContacts; i++) {
-            Contact contact = contacts[i];
+        for (int i = 0; i < contacts.size(); i++) {
+            Contact contact = contacts.get(i);
             System.out.println("Contact #" + (i + 1) + ":");
             System.out.println("First Name: " + contact.getFirstName());
             System.out.println("Last Name: " + contact.getLastName());
@@ -34,8 +29,7 @@ public class AddressBook {
     }
 
     public void editContact(String firstName, String lastName) {
-        for (int i = 0; i < numContacts; i++) {
-            Contact contact = contacts[i];
+        for (Contact contact : contacts) {
             if (contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName)) {
                 // Found the contact, now prompt for edits
                 Scanner scanner = new Scanner(System.in);
@@ -72,15 +66,9 @@ public class AddressBook {
     }
 
     public void deleteContact(String firstName, String lastName) {
-        for (int i = 0; i < numContacts; i++) {
-            if (contacts[i].getFirstName().equals(firstName) && contacts[i].getLastName().equals(lastName)) {
-                // Shift remaining elements after the deleted contact
-                for (int j = i; j < numContacts - 1; j++) {
-                    contacts[j] = contacts[j + 1];
-                }
-                contacts[numContacts - 1] = null; // Set the last element to null
-                numContacts--;
-
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).getFirstName().equals(firstName) && contacts.get(i).getLastName().equals(lastName)) {
+                contacts.remove(i); // Use remove method to delete contact
                 System.out.println("Contact deleted successfully.");
                 return;
             }
@@ -88,4 +76,3 @@ public class AddressBook {
         System.out.println("Contact not found with the given name.");
     }
 }
-
