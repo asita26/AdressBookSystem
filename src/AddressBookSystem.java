@@ -57,7 +57,18 @@ public class AddressBookSystem {
                     newContact.setFirstName(scanner.nextLine());
                     System.out.print("Enter last name: ");
                     newContact.setLastName(scanner.nextLine());
-                    // Set other contact details...
+                    System.out.print("Enter Address: ");
+                    newContact.setAddress(scanner.nextLine());
+                    System.out.print("Enter city: ");
+                    newContact.setCity(scanner.nextLine());
+                    System.out.print("Enter state: ");
+                    newContact.setState(scanner.nextLine());
+                    System.out.print("Enter zip: ");
+                    newContact.setZip(scanner.nextLine());
+                    System.out.print("Enter phone number: ");
+                    newContact.setPhoneNumber(scanner.nextLine());
+                    System.out.print("Enter email: ");
+                    newContact.setEmail(scanner.nextLine());
                     addressBook.addContact(newContact);
                     break;
 
