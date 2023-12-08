@@ -1,15 +1,25 @@
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class AddressBook {
-    private ArrayList<Contact> contacts; // Use ArrayList to dynamically store contacts
+    private ArrayList<Contact> contacts;
 
     public AddressBook() {
         this.contacts = new ArrayList<>();
     }
 
     public void addContact(Contact contact) {
-        contacts.add(contact);
+        if (!isDuplicate(contact)) {
+            contacts.add(contact);
+            System.out.println("Contact added successfully.");
+        } else {
+            System.out.println("Duplicate entry. Contact not added.");
+        }
+    }
+
+    private boolean isDuplicate(Contact newContact) {
+        return contacts.contains(newContact);
     }
 
     public void displayContacts() {
@@ -68,7 +78,7 @@ public class AddressBook {
     public void deleteContact(String firstName, String lastName) {
         for (int i = 0; i < contacts.size(); i++) {
             if (contacts.get(i).getFirstName().equals(firstName) && contacts.get(i).getLastName().equals(lastName)) {
-                contacts.remove(i); // Use remove method to delete contact
+                contacts.remove(i);
                 System.out.println("Contact deleted successfully.");
                 return;
             }
