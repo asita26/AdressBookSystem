@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Iterator; // Add import statement for Iterator
 import java.util.Scanner;
 
 public class AddressBook {
@@ -9,6 +9,11 @@ public class AddressBook {
         this.contacts = new ArrayList<>();
     }
 
+    // Remove one of the duplicate isDuplicate methods
+    private boolean isDuplicate(Contact newContact) {
+        return contacts.contains(newContact);
+    }
+
     public void addContact(Contact contact) {
         if (!isDuplicate(contact)) {
             contacts.add(contact);
@@ -16,10 +21,6 @@ public class AddressBook {
         } else {
             System.out.println("Duplicate entry. Contact not added.");
         }
-    }
-
-    private boolean isDuplicate(Contact newContact) {
-        return contacts.contains(newContact);
     }
 
     public void displayContacts() {
@@ -76,13 +77,32 @@ public class AddressBook {
     }
 
     public void deleteContact(String firstName, String lastName) {
-        for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getFirstName().equals(firstName) && contacts.get(i).getLastName().equals(lastName)) {
-                contacts.remove(i);
+        Iterator<Contact> iterator = contacts.iterator();
+        while (iterator.hasNext()) {
+            Contact contact = iterator.next();
+            if (contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName)) {
+                iterator.remove(); // Use iterator.remove() to remove the contact
                 System.out.println("Contact deleted successfully.");
                 return;
             }
         }
         System.out.println("Contact not found with the given name.");
+    }
+
+    public void searchByCityOrState(String cityOrState) {
+        for (Contact contact : contacts) {
+            if (contact.getCity().equalsIgnoreCase(cityOrState) || contact.getState().equalsIgnoreCase(cityOrState)) {
+                System.out.println("Matching Contact:");
+                System.out.println("First Name: " + contact.getFirstName());
+                System.out.println("Last Name: " + contact.getLastName());
+                System.out.println("Address: " + contact.getAddress());
+                System.out.println("City: " + contact.getCity());
+                System.out.println("State: " + contact.getState());
+                System.out.println("Zip: " + contact.getZip());
+                System.out.println("Phone Number: " + contact.getPhoneNumber());
+                System.out.println("Email: " + contact.getEmail());
+                System.out.println("------------------------");
+            }
+        }
     }
 }
