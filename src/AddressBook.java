@@ -15,7 +15,9 @@ public class AddressBook {
     }
 
     public void addContact(Contact contact) {
-        if (!isDuplicate(contact)) {
+        if (contacts.stream().noneMatch(existingContact ->
+                existingContact.getFirstName().equals(contact.getFirstName()) &&
+                        existingContact.getLastName().equals(contact.getLastName()))) {
             contacts.add(contact);
             System.out.println("Contact added successfully.");
         } else {
