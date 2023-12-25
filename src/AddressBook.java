@@ -8,6 +8,15 @@ public class AddressBook {
     public AddressBook() {
         this.contacts = new ArrayList<>();
     }
+    public Map<String, Long> countContactsByCity() {
+        return contacts.stream()
+                .collect(Collectors.groupingBy(Contact::getCity, Collectors.counting()));
+    }
+
+    public Map<String, Long> countContactsByState() {
+        return contacts.stream()
+                .collect(Collectors.groupingBy(Contact::getState, Collectors.counting()));
+    }
 
     public void addContact(Contact contact) {
         if (contacts.stream().noneMatch(existingContact ->

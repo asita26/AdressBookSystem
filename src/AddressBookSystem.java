@@ -134,6 +134,20 @@ public class AddressBookSystem {
                         System.out.println("------------------------");
                     });
         }
+        // Inside the AddressBookSystem class
+
+        public void displayContactsCountByCity() {
+            Map<String, Long> countByCity = currentAddressBook.countContactsByCity();
+            System.out.println("Contact count by City:");
+            countByCity.forEach((city, count) -> System.out.println(city + ": " + count));
+        }
+
+        public void displayContactsCountByState() {
+            Map<String, Long> countByState = currentAddressBook.countContactsByState();
+            System.out.println("Contact count by State:");
+            countByState.forEach((state, count) -> System.out.println(state + ": " + count));
+        }
+
 
     }
 
