@@ -115,6 +115,26 @@ public class AddressBookSystem {
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
         }
+        public void searchAcrossAddressBooks(String cityOrState) {
+            System.out.println("Search Result in City or State '" + cityOrState + "':");
+
+            // Use Java Streams to filter contacts in each address book
+            addressBooks.values().stream()
+                    .flatMap(addressBook -> addressBook.getContacts().stream())
+                    .filter(contact -> contact.getCity().equalsIgnoreCase(cityOrState)
+                            || contact.getState().equalsIgnoreCase(cityOrState))
+                    .forEach(contact -> {
+                        System.out.println("Name: " + contact.getFirstName() + " " + contact.getLastName());
+                        System.out.println("Address: " + contact.getAddress());
+                        System.out.println("City: " + contact.getCity());
+                        System.out.println("State: " + contact.getState());
+                        System.out.println("Zip: " + contact.getZip());
+                        System.out.println("Phone Number: " + contact.getPhoneNumber());
+                        System.out.println("Email: " + contact.getEmail());
+                        System.out.println("------------------------");
+                    });
+        }
+
     }
 
     public static void main(String[] args) {
@@ -139,6 +159,13 @@ public class AddressBookSystem {
 
                 case 3:
                     System.exit(0);
+
+                case 4:
+                    // Search by City or State
+                    System.out.print("Enter the City or State to search: ");
+                    String cityOrState = addressBookSystem.scanner.nextLine();
+                    addressBookSystem.searchAcrossAddressBooks(cityOrState);
+                    break;
 
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
