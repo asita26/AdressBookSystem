@@ -44,6 +44,7 @@ public class AddressBookSystem {
             System.out.println("4. Delete Contact");
             System.out.println("5. Switch to another Address Book");
             System.out.println("6. Exit");
+            System.out.println("7. Search by City or State");
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -103,6 +104,13 @@ public class AddressBookSystem {
                     // Exit
                     System.exit(0);
 
+                case 7:
+                    // Search by City or State
+                    System.out.print("Enter the City or State to search: ");
+                    String cityOrState = scanner.nextLine();
+                    addressBook.searchByCityOrState(cityOrState);
+                    break;
+
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
@@ -138,4 +146,3 @@ public class AddressBookSystem {
         }
     }
 }
-
