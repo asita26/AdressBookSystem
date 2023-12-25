@@ -143,6 +143,7 @@ public class AddressBookSystem {
             System.out.println("1. Create Address Book");
             System.out.println("2. Switch to Address Book");
             System.out.println("3. Exit");
+            System.out.println("4. Search by City or State across Address Books");
 
             System.out.print("Enter your choice: ");
             int choice = addressBookSystem.scanner.nextInt();
