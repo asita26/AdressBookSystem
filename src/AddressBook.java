@@ -1,13 +1,18 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-public class AddressBook {
+public class AddressBook implements Serializable {
+    private static final long serialVersionUID = 1L;
     private ArrayList<Contact> contacts;
 
     public AddressBook() {
         this.contacts = new ArrayList<>();
     }
+
     public Map<String, Long> countContactsByCity() {
         return contacts.stream()
                 .collect(Collectors.groupingBy(Contact::getCity, Collectors.counting()));
@@ -115,5 +120,22 @@ public class AddressBook {
         System.out.println("Email: " + contact.getEmail());
         System.out.println("------------------------");
     }
-}
 
+    public void writeToFile(String fileName) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            oos.writeObject(this);
+            System.out.println("AddressBook written to file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static AddressBook readFromFile(String fileName) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+            return (AddressBook) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
